@@ -1,0 +1,33 @@
+#!/bin/sh
+
+printf "===========================================\n\t\tSMTP MAIL SERVER\t\t\n===========================================\n"
+
+printf "Input User Name  : "
+read username
+
+printf "Input your passwd: "
+read pwd
+
+if [ "$pwd" = "1234" ]; then
+  echo ">> Auth Sucessful!"
+  last=0
+  ## inputing notification logic here
+  if [ -e /tmp/mail.eml ]
+		 then 
+		 play -n -q synth 0.1 sin 880 || echo -e "\a" > /dev/null
+		 y=$(zenity   --notification  --title  "Alert"  --text "You have unread Email!")
+		 printf "Do you want to read it? y/n: "
+		 read y
+		 #echo $y
+			 if [ "$y" = "y" ]; then xterm -e "cat /tmp/mail.eml | sed '10d'; bash"
+			 enscript /tmp/mail.eml -o mail.pdf
+			 else echo "no issues!"
+			 fi
+		echo date -r package.json +%s > /tmp/new
+		last=$(cat /tmp/new) 
+	 	echo "Your mail was read by receipient" > stamp
+	 else echo "No new mail!"
+	 fi
+else echo "XX Access Denied!"
+fi
+

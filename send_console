@@ -1,0 +1,17 @@
+#!/bin/sh 
+
+printf "===========================================\n\t\tSMTP MAIL SERVER\t\t\n===========================================\n"
+
+printf "Sender's Email ID   : "
+read sender
+printf "Receiver's Email ID : "
+read receiver
+
+printf "Sending Email --\n"
+swaks -h domain.com -f $sender -t $receiver --body $1 -s localhost -p 2525
+
+while [ 2 -gt 1 ]
+do
+	cat stamp;
+	#echo "at" date
+done;
