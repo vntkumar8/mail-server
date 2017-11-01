@@ -2,32 +2,66 @@
 
 printf "===========================================\n\t\tSMTP MAIL SERVER\t\t\n===========================================\n"
 
-printf "Input User Name  : "
-read username
 
-printf "Input your passwd: "
-read pwd
+zenity --forms --title="Receiver Mail Authentication Console" \
+	--text="Enter required information" \
+	--separator="$" \
+	--add-entry="Your Email Address" \
+	--add-entry="Your Password" > auth.csv 2> /dev/null
+
+case $? in
+    0)
+        echo "trying to authenticate...";;
+    1)
+        echo "xx"
+	;;
+    -1)
+        echo "An unexpected error has occurred."
+	;;
+esac
+
+
+username=$(cut auth.csv -d '$' -f1)
+pwd=$(cut auth.csv -d '$' -f2)
 
 if [ "$pwd" = "1234" ]; then
-  echo ">> Auth Sucessful!"
+  
+	zenity --info \
+	--text="Authentication Sucessful" 2> /dev/null
+
   last=0
   ## inputing notification logic here
   if [ -e /tmp/mail.eml ]
 		 then 
 		 play -n -q synth 0.1 sin 880 || echo -e "\a" > /dev/null
-		 y=$(zenity   --notification  --title  "Alert"  --text "You have unread Email!")
-		 printf "Do you want to read it? y/n: "
-		 read y
-		 #echo $y
-			 if [ "$y" = "y" ]; then xterm -e "cat /tmp/mail.eml | sed '10d'; bash"
-			 enscript /tmp/mail.eml -o mail.pdf
-			 else echo "no issues!"
-			 fi
-		echo date -r package.json +%s > /tmp/new
-		last=$(cat /tmp/new) 
-	 	echo "Your mail was read by receipient" > stamp
+		 notify-send "You have new unread mail"
+			 FILE='/tmp/mail.eml'
+
+			sudo zenity --text-info \
+				   --title="Your New Mail" \
+				   --filename=$FILE  2> /dev/null
+
+			case $? in
+				0)
+					echo "Done"
+				# next step
+				;;
+				1)
+					echo "Stop"
+				;;
+				-1)
+					echo "An unexpected error has occurred."
+				;;
+			esac
+
+			 cat /tmp/mail.eml >> old_mails
+			 echo "---------------------------" >> old_mails
+			 rm /tmp/mail.eml
+
 	 else echo "No new mail!"
 	 fi
-else echo "XX Access Denied!"
+else 
+zenity --error \
+	--text="Access Denied!" 2> /dev/null
 fi
 

@@ -1,0 +1,29 @@
+=== Trying localhost:2525...
+=== Connected to localhost.
+<-  220 vk ESMTP Haraka 2.8.16 ready
+ -> EHLO domain.com
+<-  250-vk Hello Unknown [127.0.0.1], Haraka is at your service.
+<-  250-PIPELINING
+<-  250-8BITMIME
+<-  250-SMTPUTF8
+<-  250 SIZE 0
+ -> MAIL FROM:<vk@hp.com>
+<-  250 sender <vk@hp.com> OK
+ -> RCPT TO:<mail@vineet.com>
+<-  250 recipient <mail@vineet.com> OK
+ -> DATA
+<-  354 go ahead, make my day
+ -> Date: Wed, 01 Nov 2017 19:21:21 +0530
+ -> To: mail@vineet.com
+ -> From: vk@hp.com
+ -> Subject: test Wed, 01 Nov 2017 19:21:21 +0530
+ -> Message-Id: <20171101192121.017281@vk>
+ -> X-Mailer: swaks v20170101.0 jetmore.org/john/code/swaks/
+ -> 
+ -> TEST
+ -> 
+ -> .
+<-  250 Message Queued (1D918C43-ABD4-4C6A-8596-6B4783D32DD3.1)
+ -> QUIT
+<-  221 vk closing connection. Have a jolly good day.
+=== Connection closed with remote host.

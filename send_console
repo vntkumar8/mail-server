@@ -2,16 +2,52 @@
 
 printf "===========================================\n\t\tSMTP MAIL SERVER\t\t\n===========================================\n"
 
-printf "Sender's Email ID   : "
-read sender
-printf "Receiver's Email ID : "
-read receiver
+#printf "Sender's Email ID   : "
 
-printf "Sending Email --\n"
-swaks -h domain.com -f $sender -t $receiver --body $1 -s localhost -p 2525
+c=$(wc -l < old_mails)
+zenity --forms --title="SMTP Send Mail Console" \
+	--text="Enter required information" \
+	--separator="$" \
+	--add-entry="Your Email Address" \
+	--add-entry="Recipient's Email Address" \
+	--add-entry="Your Message "  > mbook.csv 2> /dev/null
 
+case $? in
+    0)
+        echo "trying to send mail...";;
+    1)
+        echo "No mail sent."
+	;;
+    -1)
+        echo "An unexpected error has occurred."
+	;;
+esac
+
+
+sender=$(cut mbook.csv -d '$' -f1)
+receiver=$(cut mbook.csv -d '$' -f2)
+tbody=$(cut mbook.csv -d '$' -f3)
+
+
+#echo $sender $receiver $tbody
+swaks -h domain.com -f $sender -t $receiver --body $tbody -s localhost -p 2525  > sender.log 
+
+lno=$(wc -l < sender.log)
+	if [ $lno -gt 20 ]
+	then
+	notify-send "Mail Sent to $receiver"
+	else echo "There was some trouble. 
+	Kindly check the sender.log file for details about problem"
+	fi
+## read receipts
 while [ 2 -gt 1 ]
 do
-	cat stamp;
-	#echo "at" date
+d=$(wc -l < old_mails)
+if [ $c != $d ] 
+then
+	printf "Your Mail was read by receipient $receiver at " 
+	date -r old_mails
+	break
+fi
 done;
+

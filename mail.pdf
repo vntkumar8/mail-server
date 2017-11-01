@@ -2,7 +2,7 @@
 %%BoundingBox: 18 36 577 806
 %%Title: Enscript Output
 %%Creator: GNU Enscript 1.6.5.90
-%%CreationDate: Tue Oct 31 13:10:47 2017
+%%CreationDate: Wed Nov  1 18:51:29 2017
 %%Orientation: Portrait
 %%Pages: (atend)
 %%DocumentMedia: A4 595 842 0 () ()
@@ -455,7 +455,7 @@ _S
 /fdir (/tmp) def
 /ftail (mail.eml) def
 % User defined strings:
-/fmodstr (Tue Oct 31 13:01:41 2017) def
+/fmodstr (Wed Nov 01 18:34:10 2017) def
 /pagenumstr (1) def
 /user_header_p false def
 /user_footer_p false def
@@ -464,25 +464,25 @@ do_header
 5 742 M
 (Received: from domain.com \(Unknown [127.0.0.1]\)) s
 5 731 M
-(        by vk \(Haraka/2.8.16\) with ESMTP id 249AB9EC-85DB-4CAF-97F8-E642E61561D4.1) s
+(        by vk \(Haraka/2.8.16\) with ESMTP id 37CE174D-1D1F-4C3D-BF26-F4199334F3FB.1) s
 5 720 M
-(        envelope-from <vk@hp.com>;) s
+(        envelope-from <hp@xerox.com>;) s
 5 709 M
-(        Tue, 31 Oct 2017 13:01:41 +0530) s
+(        Wed, 01 Nov 2017 18:34:10 +0530) s
 5 698 M
-(Date: Tue, 31 Oct 2017 13:01:39 +0530) s
+(Date: Wed, 01 Nov 2017 18:34:10 +0530) s
 5 687 M
-(To: mail@vineet.com) s
+(To: vineet@vineet.com) s
 5 676 M
-(From: vk@hp.com) s
+(From: hp@xerox.com) s
 5 665 M
-(Subject: test Tue, 31 Oct 2017 13:01:39 +0530) s
+(Subject: test Wed, 01 Nov 2017 18:34:10 +0530) s
 5 654 M
-(Message-Id: <20171031130139.004909@vk>) s
+(Message-Id: <20171101183410.010107@vk>) s
 5 643 M
 (X-Mailer: swaks v20170101.0 jetmore.org/john/code/swaks/) s
 5 621 M
-(hi 2345678) s
+(Test) s
 _R
 S
 %%Trailer
