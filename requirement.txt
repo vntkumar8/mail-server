@@ -1,0 +1,7 @@
+Requires
+---------
+Node > 8.0
+NPM > 5.0
+Haraka     #For Mail Server
+zenity	 #For GUI
+swaks.pl #For Client Side Mail Sender Console
